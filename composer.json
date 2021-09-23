@@ -3,6 +3,15 @@
     "type": "library",
     "minimum-stability": "dev",
     "require": {
-        "php": ">=8.0"
+        "php": ">=8.0",
+        "composer-plugin-api": "^1.0 | ^2.0"
+    },
+    "require-dev": {
+        "composer/composer": "^1.0 | ^2.0@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "eazy\\": "src/"
+        }
     }
 }
