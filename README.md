@@ -1,1 +1,2 @@
-# eazy
+# Eazy PHP Framework
+===========================

@@ -1,0 +1,8 @@
+{
+    "name": "eazysoft/eazy",
+    "type": "library",
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=8.0"
+    }
+}
