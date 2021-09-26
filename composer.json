@@ -4,7 +4,8 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=8.0",
-        "eazysoft/eazy-composer": "dev-main"
+        "eazysoft/eazy-composer": "dev-main",
+        "symfony/console": "5.3.x-dev"
     },
     "autoload": {
         "psr-4": {
