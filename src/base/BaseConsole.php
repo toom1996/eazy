@@ -20,7 +20,6 @@ class BaseConsole extends Application
             $file = APP_PATH.'/vendor/eazysoft/extensions.php';
             $this->extensions = is_file($file) ? include $file : [];
         }
-
         $this->init();
         parent::__construct($name, $version);
     }
