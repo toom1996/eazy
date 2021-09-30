@@ -2,6 +2,7 @@
 
 namespace eazy\console;
 
+use Psr\Log\LogLevel;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
 class StdoutLogger
@@ -17,15 +18,9 @@ class StdoutLogger
     }
 
 
-    public function log($level, string|array $message)
+    public function log(string $level, string|array $message)
     {
-        $level = 'error';
         $template = sprintf('<%s>[%s]</>', $level, strtoupper($level));
-        $implodedTags = '';
-        foreach ($tags as $value) {
-            $implodedTags .= (' [' . $value . ']');
-        }
-
-        $this->output->writeln(sprintf($template . $implodedTags . ' %s', $message));
+        $this->output->writeln(sprintf($template . ' %s', $message));
     }
 }

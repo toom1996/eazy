@@ -3,6 +3,7 @@
 namespace eazy;
 
 use eazy\console\StdoutLogger;
+use Psr\Log\LogLevel;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
 class Eazy
@@ -37,13 +38,13 @@ class Eazy
         return self::$output;
     }
 
-    public static function info()
+    public static function info($message)
     {
-        self::getOutput()->log('info');
+        self::getOutput()->log(LogLevel::INFO, $message);
     }
 
-    public static function error()
+    public static function error($message)
     {
-        self::getOutput()->log('error');
+        self::getOutput()->log(LogLevel::ERROR, $message);
     }
 }

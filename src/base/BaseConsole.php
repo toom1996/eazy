@@ -17,7 +17,7 @@ class BaseConsole extends Application
         string $version = '1.0.0 (dev)'
     ) {
         if (!$this->extensions) {
-            $file = APP_PATH.'/vendor/eazysoft/extensions.php';
+            $file = APP_PATH . '/vendor/eazysoft/extensions.php';
             $this->extensions = is_file($file) ? include $file : [];
         }
         $this->init();
