@@ -30,8 +30,8 @@ class BaseCommand extends Command
      * @var array
      */
     protected array $arguments = [
-        ['name', InputArgument::REQUIRED, 'what\'s model you want to create ?'],
-        ['optional_argument', InputArgument::OPTIONAL, 'this is a optional argument'],
+//        ['name', InputArgument::REQUIRED, 'what\'s model you want to create ?'],
+//        ['optional_argument', InputArgument::OPTIONAL, 'this is a optional argument'],
     ];
 
     /**

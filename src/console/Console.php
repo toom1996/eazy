@@ -11,14 +11,13 @@ class Console extends BaseConsole
 {
     public function init()
     {
-//        Eazy::getApp();
         try {
             foreach ($this->extensions as $v) {
                 $bootstrapClass = $v['bootstrap'];
                 $ref = new \ReflectionClass($bootstrapClass);
                 if ($ref->implementsInterface(BootstrapCommandInterface::class)) {
                     $bootstrap = $ref->getMethod('bootstrap');
-                    $bootstrap->invokeArgs($ref->newInstance(),[&$this]);
+                    $bootstrap->invokeArgs($ref->newInstance(),[&$this, $v['name']]);
                 }
             }
         }catch (\Throwable $exception) {
