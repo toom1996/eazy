@@ -23,16 +23,16 @@ class BaseCommand extends Command
      * Command help.
      * @var string
      */
-    protected string $help;
+    protected string $help = '';
 
     /**
      * Command augument.
      * @var array
      */
     protected array $arguments = [
-//        ['name', InputArgument::REQUIRED, 'what\'s model you want to create ?'],
-//        ['optional_argument', InputArgument::OPTIONAL, 'this is a optional argument'],
     ];
+
+    protected array $options = [];
 
     /**
      * {@inheritDoc}
@@ -42,6 +42,10 @@ class BaseCommand extends Command
         $this->setName($this->name);
         $this->setDescription($this->description);
         $this->setHelp($this->help);
+
+        foreach ($this->options as $option) {
+            $this->addOption(...$option);
+        }
 
         foreach ($this->arguments as $argument) {
             $this->addArgument(...$argument);

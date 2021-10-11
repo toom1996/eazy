@@ -1,6 +1,6 @@
 <?php
 
-namespace eazy\base;
+namespace eazy\helpers;
 
 class BaseArrayHelper
 {
