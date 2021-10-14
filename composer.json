@@ -6,7 +6,8 @@
         "php": ">=8.0",
         "eazysoft/eazy-composer": "dev-main",
         "psr/log": "^1.0",
-        "symfony/console": "^5.0"
+        "symfony/console": "^5.0",
+        "php-di/php-di": "dev-master"
     },
     "autoload": {
         "psr-4": {

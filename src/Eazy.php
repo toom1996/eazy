@@ -3,6 +3,7 @@
 namespace eazy;
 
 use eazy\console\StdoutLogger;
+use eazy\di\Di;
 use Psr\Log\LogLevel;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
@@ -16,7 +17,7 @@ class Eazy
     private static $aliases;
 
     /**
-     * @var \DI\ContainerBuilder
+     * @var Di
      */
     public static $container;
 
