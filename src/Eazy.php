@@ -4,6 +4,7 @@ namespace eazy;
 
 use eazy\console\StdoutLogger;
 use eazy\di\Di;
+use eazy\http\exceptions\UnknownClassException;
 use Psr\Log\LogLevel;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
@@ -20,6 +21,8 @@ class Eazy
      * @var Di
      */
     public static $container;
+
+    public static $classMap;
 
     /**
      * Configures an object with the initial property values.
@@ -174,5 +177,28 @@ class Eazy
         }
 
         throw new InvalidConfigException('Unsupported configuration type: ' . gettype($type));
+    }
+    
+    public static function autoload($className)
+    {
+        if (isset(static::$classMap[$className])) {
+            $classFile = static::$classMap[$className];
+            if ($classFile[0] === '@') {
+                $classFile = static::getAlias($classFile);
+            }
+        } elseif (strpos($className, '\\') !== false) {
+            $classFile = static::getAlias('@' . str_replace('\\', '/', $className) . '.php', false);
+            if ($classFile === false || !is_file($classFile)) {
+                return;
+            }
+        } else {
+            return;
+        }
+
+        include $classFile;
+
+        if (!class_exists($className, false) && !interface_exists($className, false) && !trait_exists($className, false)) {
+            throw new UnknownClassException("Unable to find '$className' in file: $classFile. Namespace missing?");
+        }
     }
 }

@@ -65,7 +65,6 @@ class Di extends BaseObject
     {
         $this->_singletons[$class] = $this->normalizeDefinition($class, $definition);
         static::$container->set($class,create($this->_singletons[$class]['class'])->constructor());
-        var_dump(static::$container->get('urlManager'));
 //        $this->_params[$class] = $params;
 //        unset($this->_singletons[$class]);
         return $this;
@@ -74,5 +73,10 @@ class Di extends BaseObject
     public function build()
     {
         
+    }
+
+    public function has(string $name)
+    {
+        return static::$container->has($name);
     }
 }
