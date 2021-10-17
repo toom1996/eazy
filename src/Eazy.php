@@ -4,6 +4,7 @@ namespace eazy;
 
 use eazy\console\StdoutLogger;
 use eazy\di\Di;
+use eazy\http\exceptions\InvalidConfigException;
 use eazy\http\exceptions\UnknownClassException;
 use Psr\Log\LogLevel;
 use Symfony\Component\Console\Output\ConsoleOutput;
@@ -161,22 +162,29 @@ class Eazy
         }
     }
 
-
-    public static function createObject($type, array $params = [])
+    /**
+     * 实例化对象
+     * `Eazy::createObject('classname', [
+     *      'foo' => 'bar',
+     * ]);`
+     *
+     * `Eazy::createObject([
+     *      'class' => classname
+     *      'foo' => 'bar',
+     * ]);`
+     *
+     * @param         $type
+     * @param  array  $params
+     *
+     * @return \#o#Э#A#M#C\eazy\di\Di.get.0|mixed|void
+     * @throws InvalidConfigException
+     */
+    public static function createObject($type, $params = [])
     {
         if (is_string($type)) {
-            return static::$container->get($type, $params);
-        } elseif (is_array($type) && isset($type['class'])) {
-            $class = $type['class'];
-            unset($type['class']);
-            return static::$container->get($class, $params, $type);
-        } elseif (is_callable($type, true)) {
-            return static::$container->invoke($type, $params);
-        } elseif (is_array($type)) {
-            throw new InvalidConfigException('Object configuration must be an array containing a "class" element.');
+            $ref = new \ReflectionClass($type);
+            return $ref->newInstanceArgs([$params]);
         }
-
-        throw new InvalidConfigException('Unsupported configuration type: ' . gettype($type));
     }
     
     public static function autoload($className)
