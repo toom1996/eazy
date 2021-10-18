@@ -32,8 +32,7 @@ class Di extends BaseObject
     {
         if (isset($this->_singletons[$class])) {
             // singleton
-            return static::$container->get($class);
-            return $this->_singletons[$class];
+            return self::$container->get($class);
         } elseif (!isset($this->_definitions[$class])) {
 
 
@@ -64,19 +63,15 @@ class Di extends BaseObject
     public function set($class, $definition = [])
     {
         $this->_singletons[$class] = $this->normalizeDefinition($class, $definition);
-        static::$container->set($class,create($this->_singletons[$class]['class'])->constructor());
+        self::$container->set($class, create($this->_singletons[$class]['class'])->constructor());
 //        $this->_params[$class] = $params;
 //        unset($this->_singletons[$class]);
         return $this;
     }
     
-    public function build()
-    {
-        
-    }
 
     public function has(string $name)
     {
-        return static::$container->has($name);
+        return self::$container->has($name);
     }
 }

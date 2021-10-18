@@ -11,7 +11,7 @@ class BaseObject
      *
      * @param  array  $config
      */
-    public function __construct(array $config = [])
+    public function __construct($config = [])
     {
         if (!empty($config)) {
             Eazy::configure($this, $config);

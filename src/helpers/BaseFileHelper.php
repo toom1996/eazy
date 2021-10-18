@@ -42,4 +42,18 @@ class BaseFileHelper
             throw new \eazy\base\Exception("Failed to change permissions for directory \"$path\": " . $e->getMessage(), $e->getCode(), $e);
         }
     }
+
+    /**
+     *
+     * @return string
+     */
+    public static function getNamespace(string $file)
+    {
+        $file = file_get_contents($file);
+        if (!$r = preg_match('/namespace(.*);/', $file, $matches)) {
+            return '';
+        }
+
+        return trim($matches[1]);
+    }
 }
