@@ -181,6 +181,12 @@ class Eazy
      */
     public static function createObject($type, $params = [])
     {
+        if(is_array($type) && isset($type['class'])) {
+            $params = $type;
+            $type = $params['class'];
+            unset($params['class']);
+        }
+
         if (is_string($type)) {
             $ref = new \ReflectionClass($type);
             return $ref->newInstanceArgs([$params]);

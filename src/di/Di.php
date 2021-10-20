@@ -5,6 +5,7 @@ namespace eazy\di;
 use DI\Container;
 use DI\ContainerBuilder;
 use eazy\base\BaseObject;
+use eazy\Eazy;
 use function DI\create;
 
 class Di extends BaseObject
@@ -63,7 +64,9 @@ class Di extends BaseObject
     public function set($class, $definition = [])
     {
         $this->_singletons[$class] = $this->normalizeDefinition($class, $definition);
-        self::$container->set($class, create($this->_singletons[$class]['class'])->constructor());
+        self::$container->set($class, Eazy::createObject($this->_singletons[$class]));
+        echo '12313123123123123' . PHP_EOL;
+        var_dump(self::$container);
 //        $this->_params[$class] = $params;
 //        unset($this->_singletons[$class]);
         return $this;
