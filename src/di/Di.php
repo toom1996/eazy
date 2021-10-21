@@ -65,8 +65,6 @@ class Di extends BaseObject
     {
         $this->_singletons[$class] = $this->normalizeDefinition($class, $definition);
         self::$container->set($class, Eazy::createObject($this->_singletons[$class]));
-        echo '12313123123123123' . PHP_EOL;
-        var_dump(self::$container);
 //        $this->_params[$class] = $params;
 //        unset($this->_singletons[$class]);
         return $this;
