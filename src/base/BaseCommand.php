@@ -36,12 +36,7 @@ class BaseCommand extends Command
     ];
 
     protected array $options = [];
-
-    /**
-     * @var OutputInterface
-     */
-    protected  $config;
-
+    
     /**
      * {@inheritDoc}
      */
